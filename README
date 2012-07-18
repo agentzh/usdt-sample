@@ -10,3 +10,7 @@ Run:
     Terminal 2:
         sudo ./run.d
 
+Tested on the following systems:
+
+    * Solaris 11 Express 2010_11 (i386)
+
