@@ -1,0 +1,13 @@
+Build:
+
+    gmake
+    sudo gmake install
+
+Run:
+    Terminal 1:
+        ./test
+
+    Terminal 2:
+        sudo dtrace -n \
+            '' (Terminal 2)
+
