@@ -8,6 +8,5 @@ Run:
         ./test
 
     Terminal 2:
-        sudo dtrace -n \
-            '' (Terminal 2)
+        sudo ./run.d
 
