@@ -1,16 +1,23 @@
 Build:
 
-    gmake
-    sudo gmake install
+    (Gnu make is recommended.)
+
+    make
+    sudo make install
 
 Run:
     Terminal 1:
         ./test
 
     Terminal 2:
-        sudo ./run.d
+        for dtrace:
+            sudo ./run.d
+
+        for systemtap:
+            sudo ./run.stp
 
 Tested on the following systems:
 
     * Solaris 11 Express 2010_11 (i386)
+    * Fedora 17 Linux (x86_64)
 
