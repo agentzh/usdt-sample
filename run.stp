@@ -4,7 +4,12 @@ probe begin, end {
     print("Tracing.  Hit CTRL-C to stop.\n");
 }
 
-probe process("/home/agentzh/git/usdt-sample/test").mark("request__start")
+probe process("./test").mark("blah")
+{
+    print("blah...\n")
+}
+
+probe process("./test").mark("request__start")
 {
     raddr = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->raddr)
     laddr = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->laddr)

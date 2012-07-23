@@ -8,3 +8,8 @@ provider ngx_http {
     probe request__done(ngx_http_dtrace_request_t *p) : (ngx_conn_info_t *p, ngx_http_req_info_t *p);
 };
 
+
+provider ngx_core {
+    probe blah(int a) : (int a);
+}
+

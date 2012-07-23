@@ -14,6 +14,8 @@ int main(void)
     dt_r.raddr = "remote";
 
     for (;;) {
+        NGX_CORE_BLAH(789);
+
         if (NGX_HTTP_REQUEST_START_ENABLED()) {
             NGX_HTTP_REQUEST_START(&dt_r);
         }
