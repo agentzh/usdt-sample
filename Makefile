@@ -2,14 +2,15 @@
 
 OBJS=test.o
 CC=gcc
+#export CFLAGS=-m32
 
 all: test
 
 test: test.o test_provider.o
-	$(CC) -o $@ $^
+	$(CC) $(CFLAGS) -o $@ $^
 
 test.o: test.c test_provider.h
-	$(CC) -c $<
+	$(CC) $(CFLAGS) -g -c $<
 
 test_provider.h: test_provider.d
 	dtrace -xnolibs -h -o $@ -s test_provider.d
