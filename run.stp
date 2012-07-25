@@ -9,7 +9,18 @@ probe process("./test").mark("blah")
     print("blah...\n")
 }
 
-probe process("./test").mark("request__start")
+probe process("./test").mark("request-start")
+{
+    raddr = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->raddr)
+    laddr = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->laddr)
+    id = @cast($arg1, "ngx_http_dtrace_request_s")->id
+    uri = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->uri)
+    args = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->args)
+    printf("start: %s -> %s (id %d, %s?%s)\n", raddr, laddr, id, uri, args)
+    //printf("args: %s", user_string(@cast(&$dt_r, "ngx_http_dtrace_request_t")->args))
+}
+
+probe process("./test").mark("request-done")
 {
     raddr = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->raddr)
     laddr = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->laddr)
@@ -17,6 +28,5 @@ probe process("./test").mark("request__start")
     uri = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->uri)
     args = user_string(@cast($arg1, "ngx_http_dtrace_request_s")->args)
     printf("done: %s -> %s (id %d, %s?%s)\n", raddr, laddr, id, uri, args)
-    //printf("args: %s", user_string(@cast(&$dt_r, "ngx_http_dtrace_request_t")->args))
 }
 
