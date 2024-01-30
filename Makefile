@@ -13,10 +13,10 @@ test.o: test.c test_provider.h
 	$(CC) $(CFLAGS) -g -c $<
 
 test_provider.h: test_provider.d
-	dtrace -xnolibs -h -o $@ -s test_provider.d
+	dtrace -x nolibs -h -o $@ -s test_provider.d
 
 test_provider.o: test_provider.d $(OBJS)
-	dtrace -xnolibs -G -o $@ -s $< $(OBJS)
+	dtrace -x nolibs -G -o $@ -s $< $(OBJS)
 
 install: all
 	cp test.d /usr/lib/dtrace/
